@@ -1,0 +1,113 @@
+# Development Docker Compose Configuration
+# Optimized for development with live reloading and debugging
+
+version: '3.8'
+
+services:
+  
+  # Development Service with Volume Mounts for Live Editing
+  translation-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: translation-dev
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+      - PYTHONPATH=/app/src
+      - FTP_HOST=${FTP_HOST:-localhost}
+      - FTP_PORT=${FTP_PORT:-21}
+      - FTP_USERNAME=${FTP_USERNAME:-testuser}
+      - FTP_PASSWORD=${FTP_PASSWORD:-testpass}
+      - TRANSLATION_SERVICE=${TRANSLATION_SERVICE:-google}
+      - TRANSLATION_API_KEY=${TRANSLATION_API_KEY}
+      - SOURCE_LANGUAGE=${SOURCE_LANGUAGE:-en}
+      - TRANSLATION_LANGUAGES=${TRANSLATION_LANGUAGES:-sk,hu,de,pl}
+    volumes:
+      # Live code editing
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./tests:/app/tests
+      
+      # Data directories
+      - ./dev-input:/app/input
+      - ./dev-output:/app/output
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      
+      # Development tools
+      - ./.vscode:/app/.vscode
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./requirements.txt:/app/requirements.txt
+    ports:
+      - "8000:8000"  # Development server
+      - "5678:5678"  # Debug port
+    networks:
+      - dev-network
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    
+  # Test FTP Server for Development
+  ftp-server:
+    image: stilliard/pure-ftpd
+    container_name: translation-ftp-dev
+    environment:
+      - PUBLICHOST=localhost
+      - FTP_USER_NAME=testuser
+      - FTP_USER_PASS=testpass
+      - FTP_USER_HOME=/home/testuser
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - ./ftp-data:/home/testuser
+      - ./ftp-data:/etc/pure-ftpd/passwd
+    networks:
+      - dev-network
+    profiles:
+      - ftp
+
+  # Database for Caching (Development)
+  redis-cache:
+    image: redis:7-alpine
+    container_name: translation-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-dev-data:/data
+    networks:
+      - dev-network
+    profiles:
+      - cache
+
+  # Testing Service
+  translation-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: testing
+    container_name: translation-test
+    environment:
+      - ENVIRONMENT=testing
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./test-results:/app/test-results
+    networks:
+      - dev-network
+    command: ["python", "-m", "pytest", "tests/", "-v", "--cov=src", "--cov-report=html:/app/test-results/coverage"]
+    profiles:
+      - testing
+
+networks:
+  dev-network:
+    driver: bridge
+    name: translation-dev-network
+
+volumes:
+  redis-dev-data:
+    driver: local

@@ -1,0 +1,33 @@
+@import '/vs/css/flexboxgrid.min.css' screen;
+@import '/vs/css/jquery-ui-1.10.4.custom.min.css' screen;
+@import '/temp/web_booking_061_min.css' screen;
+
+@font-face {
+font-family: 'Mont';
+src: url(/vs/css/Montserrat-Regular.ttf);
+font-weight: 400;
+}
+
+@font-face {
+font-family: 'Mont';
+src: url(/vs/css/Montserrat-Medium.ttf);
+font-weight: 500;
+}
+
+@font-face {
+font-family: 'Mont';
+src: url(/vs/css/Montserrat-SemiBold.ttf);
+font-weight: 600;
+}
+@font-face {
+font-family: 'Mont';
+src: url(/vs/css/Montserrat-Bold.ttf);
+font-weight: 700;
+}
+
+@font-face {
+font-family: 'Mont';
+src: url(/vs/css/Montserrat-ExtraBold.ttf);
+font-weight: 900;
+}
+

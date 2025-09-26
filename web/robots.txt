@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vilamlynica.sk/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /logs/
+Disallow: /sub/
+
+# Allow important files
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /videos/
+Allow: /lang/
+
+# Crawl delay (optional)
+Crawl-delay: 1

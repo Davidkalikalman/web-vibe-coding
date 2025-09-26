@@ -1,0 +1,21 @@
+header, footer, nav, .no-print, .promoinfo, #reviewtoopen, aside, #calendar-block, #rf-start, #rf-end, #rf-persons {display: none !important;}
+            body, h1, h2, h3, h4, p {font-family: 'Montserrat', Arial, sans-serif; color: #333; margin: 0; padding: 20px;}
+            h1, h2, h3 {color: #1d2951; font-weight: bold; margin-bottom: 10px;}
+            p, td, th {color: #000; font-size: 12pt; line-height: 1.5; margin: 0; padding: 8px;}
+            table {width: 100%; border-collapse: collapse; margin-bottom: 20px;}
+            th, td {border: 1px solid #ccc; padding: 8px; text-align: left;}
+            th {background-color: #f4f4f4; color: #000;}
+            .highlight {background-color: #e6f7ff;}
+            button, .button {display: inline-block; padding: 10px 15px; color: white; background-color: #1d2951; border: none; text-transform: uppercase; font-size: 12pt; text-align: center;}
+            input, select {border: none; background-color: transparent; color: #333; font-weight: bold; text-transform: capitalize;}
+            input[type="text"], select {display: inline-block; padding: 5px; border: 1px solid #ddd;}
+            label {font-weight: bold; color: #1d2951; margin-right: 10px;}
+            footer {text-align: center; font-size: 10pt; color: #1d2951; border-top: 1px solid #ccc; padding: 10px; position: fixed; bottom: 0; width: 100%;}
+            footer:after {content: "Page " counter(page);}
+            .price-summary {background-color: #e6f7ff; padding: 15px; margin-bottom: 20px;}
+            .total-price {font-size: 18pt; font-weight: bold; color: #ff0044;}
+            .booking-details {border: 2px solid #1d2951; padding: 20px; margin-bottom: 20px;}
+            .booking-details h2 {color: #1d2951; font-size: 16pt; margin-bottom: 10px;}
+            .booking-details .checkin, .booking-details .checkout {font-size: 12pt; color: #333;}
+            .booking-details .room-info {font-size: 12pt; color: #000; font-weight: bold;}
+       

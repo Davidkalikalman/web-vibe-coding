@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage - Slovak (default) -->
+  <url>
+    <loc>https://vilamlynica.sk/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vilamlynica.sk/en/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://vilamlynica.sk/pl/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://vilamlynica.sk/hu/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://vilamlynica.sk/de/" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://vilamlynica.sk/" />
+  </url>
+
+  <!-- Accommodation -->
+  <url>
+    <loc>https://vilamlynica.sk/pages/accommodation.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Restaurant -->
+  <url>
+    <loc>https://vilamlynica.sk/pages/restaurant.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Virtual Tour -->
+  <url>
+    <!-- virtual tour temporarily disabled -->
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://vilamlynica.sk/pages/gallery.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://vilamlynica.sk/contact.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- English versions -->
+  <url>
+    <loc>https://vilamlynica.sk/en/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Polish versions -->
+  <url>
+    <loc>https://vilamlynica.sk/pl/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Hungarian versions -->
+  <url>
+    <loc>https://vilamlynica.sk/hu/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- German versions -->
+  <url>
+    <loc>https://vilamlynica.sk/de/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,147 @@
+# Docker Compose configuration for Multilingual Text Management System
+# Supports development, production, and testing environments
+
+version: '3.8'
+
+# =============================================================================
+# Services
+# =============================================================================
+services:
+  
+  # Main Translation Service
+  translation-system:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: translation-system-main
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - FTP_HOST=${FTP_HOST}
+      - FTP_PORT=${FTP_PORT:-21}
+      - FTP_USERNAME=${FTP_USERNAME}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+      - FTP_USE_TLS=${FTP_USE_TLS:-true}
+      - TRANSLATION_SERVICE=${TRANSLATION_SERVICE:-google}
+      - TRANSLATION_API_KEY=${TRANSLATION_API_KEY}
+      - SOURCE_LANGUAGE=${SOURCE_LANGUAGE:-en}
+      - TRANSLATION_LANGUAGES=${TRANSLATION_LANGUAGES:-sk,en,hu,de,pl}
+    volumes:
+      - ./input:/app/input:ro
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./config:/app/config:ro
+    networks:
+      - translation-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "src/main.py", "validate"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Development Service
+  translation-system-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: translation-system-dev
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - .:/app
+      - ./input:/app/input
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+    ports:
+      - "8000:8000"
+    networks:
+      - translation-network
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    profiles:
+      - development
+
+  # Batch Processing Service
+  translation-batch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: translation-batch
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - FTP_HOST=${FTP_HOST}
+      - FTP_PORT=${FTP_PORT:-21}
+      - FTP_USERNAME=${FTP_USERNAME}
+      - FTP_PASSWORD=${FTP_PASSWORD}
+      - TRANSLATION_SERVICE=${TRANSLATION_SERVICE:-google}
+      - TRANSLATION_API_KEY=${TRANSLATION_API_KEY}
+    volumes:
+      - ./batch-input:/app/input:ro
+      - ./batch-output:/app/output
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+    networks:
+      - translation-network
+    command: ["python", "src/main.py", "batch", "--input", "/app/input", "--recursive"]
+    restart: "no"
+    profiles:
+      - batch
+
+  # Monitoring Service (Optional)
+  translation-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: translation-monitor
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./logs:/app/logs:ro
+    networks:
+      - translation-network
+    command: ["python", "-c", "import time; import json; import os; 
+              while True: 
+                try:
+                  with open('/app/logs/translation_system.json', 'r') as f:
+                    for line in f.readlines()[-10:]:
+                      try: print(json.loads(line)['message'])
+                      except: pass
+                except: pass
+                time.sleep(10)"]
+    restart: unless-stopped
+    profiles:
+      - monitoring
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  translation-network:
+    driver: bridge
+    name: translation-network
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  translation-cache:
+    driver: local
+  translation-logs:
+    driver: local

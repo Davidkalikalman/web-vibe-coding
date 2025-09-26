@@ -1,0 +1,1425 @@
+/* Vila Mlynica - Custom Styles */
+
+:root {
+  --primary-color: #2c5530;
+  --primary-light: #4a7c59;
+  --primary-dark: #1a3d1f;
+  --secondary-color: #d4a574;
+  --secondary-light: #e8c5a0;
+  --secondary-dark: #b8956b;
+  --accent-color: #8b5a3c;
+  --text-dark: #2c2c2c;
+  --text-light: #666666;
+  --bg-light: #f8f9fa;
+  --bg-dark: #212529;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+
+  /* Mobile-specific variables */
+  --mobile-padding: 1rem;
+  --tablet-padding: 2rem;
+  --desktop-padding: 3rem;
+  --safe-area-inset-top: env(safe-area-inset-top, 0);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0);
+  --safe-area-inset-left: env(safe-area-inset-left, 0);
+  --safe-area-inset-right: env(safe-area-inset-right, 0);
+
+  /* Dynamic viewport height for mobile browsers */
+  --vh: 1vh;
+  --dynamic-vh: calc(var(--vh, 1vh) * 100);
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.display-3, .display-4, .display-5 {
+  font-weight: 700;
+}
+
+/* Integrated Video Navigation */
+#mainNavbar {
+  background: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  position: absolute !important;
+  z-index: 10;
+}
+
+#mainNavbar .navbar-brand {
+  font-size: 1.5rem;
+  color: white !important;
+  transition: var(--transition);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+#mainNavbar .navbar-brand img {
+  height: 45px !important;
+  width: auto;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  border: 2px solid rgba(255,255,255,0.2);
+  margin-right: 10px !important;
+  flex-shrink: 0;
+}
+
+#mainNavbar .navbar-brand span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure navbar container has proper flex behavior */
+#mainNavbar .container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 1rem;
+}
+
+/* Ensure toggler stays next to brand */
+#mainNavbar .navbar-toggler {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+#mainNavbar .navbar-brand:hover {
+  color: rgba(255,255,255,0.9) !important;
+  transform: scale(1.05);
+}
+
+#mainNavbar .navbar-brand:hover img {
+  transform: scale(1.05);
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+#mainNavbar .navbar-nav .nav-link {
+  font-weight: 600;
+  color: white !important;
+  transition: var(--transition);
+  position: relative;
+  margin: 0 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  padding: 0.5rem 1rem !important;
+}
+
+#mainNavbar .navbar-nav .nav-link:hover,
+#mainNavbar .navbar-nav .nav-link.active {
+  color: white !important;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transform: translateY(-2px);
+}
+
+#mainNavbar .navbar-nav .nav-link::after {
+  display: none;
+}
+
+#mainNavbar .book-now-btn {
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(44, 85, 48, 0.4);
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+#mainNavbar .book-now-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(44, 85, 48, 0.6);
+}
+
+/* Remove old navbar styles */
+.navbar.scrolled {
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  transition: var(--transition);
+}
+
+.book-now-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: var(--dynamic-vh);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Enhanced video styles for single hero video */
+.video-slide video {
+  transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+}
+
+.video-slide video:hover {
+  transform: scale(1.02);
+}
+
+/* Text animation enhancements for hero overlay */
+.hero-overlay {
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.hero-overlay h1,
+.hero-overlay h2 {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+  opacity: 1;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.hero-overlay p {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+  opacity: 1;
+  animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.hero-overlay .btn {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+  opacity: 1;
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bold and black styling for tagline text */
+[data-lang="hero-subtitle"],
+[data-lang="footer-tagline"] {
+  font-weight: bold !important;
+  color: #000000 !important;
+}
+
+/* Page-specific carousel intervals for other pages */
+#contactCarousel {
+  --bs-carousel-interval: 4000ms;
+}
+
+#restaurantCarousel {
+  --bs-carousel-interval: 5000ms;
+}
+
+#virtualTourCarousel {
+  --bs-carousel-interval: 3500ms;
+}
+
+#standardRoomCarousel {
+  --bs-carousel-interval: 5500ms;
+}
+
+#familySuiteCarousel {
+  --bs-carousel-interval: 6000ms;
+}
+
+#luxurySuiteCarousel {
+  --bs-carousel-interval: 4200ms;
+}
+
+#restaurantInteriorCarousel {
+  --bs-carousel-interval: 5200ms;
+}
+
+/* Video Integration Styles */
+.video-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--dynamic-vh);
+  overflow: hidden;
+}
+
+.video-slide video {
+  width: 100%;
+  height: 100%;
+  min-height: var(--dynamic-vh);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.carousel-item video {
+  width: 100%;
+  height: 100%;
+  min-height: var(--dynamic-vh);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Video overlay for better text readability */
+.video-slide::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.video-slide .carousel-caption {
+  z-index: 2;
+  position: relative;
+}
+
+/* Single Video Hero Section */
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: var(--dynamic-vh);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.hero-overlay h1,
+.hero-overlay h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.hero-overlay p {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.hero-overlay .btn {
+  background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+  border: none;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(44, 85, 48, 0.4);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.hero-overlay .btn:hover {
+  background: linear-gradient(45deg, var(--primary-light), var(--primary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 85, 48, 0.6);
+}
+
+/* Responsive video adjustments with dynamic dimensions */
+@media (max-width: 768px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 85);
+  }
+
+  .hero-section {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item video,
+  .video-slide video {
+    min-height: var(--dynamic-vh);
+    object-position: center center;
+  }
+
+  .video-slide {
+    min-height: var(--dynamic-vh);
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 75);
+  }
+
+  .hero-section {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item video,
+  .video-slide video {
+    min-height: var(--dynamic-vh);
+    object-position: center center;
+  }
+
+  .video-slide {
+    min-height: var(--dynamic-vh);
+  }
+}
+
+/* Landscape orientation optimization */
+@media (orientation: landscape) and (max-height: 600px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 100);
+  }
+
+  .hero-section {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item {
+    min-height: var(--dynamic-vh);
+  }
+
+  .carousel-item video,
+  .video-slide video {
+    min-height: var(--dynamic-vh);
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .video-slide {
+    min-height: var(--dynamic-vh);
+  }
+}
+
+/* Tall devices (portrait tablets) */
+@media (min-height: 900px) and (max-width: 768px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 90);
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 70);
+  }
+}
+
+/* Ultra-wide screen optimization */
+@media (min-aspect-ratio: 16/9) {
+  .carousel-item video,
+  .video-slide video {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+/* Pause video when not active slide */
+.carousel-item:not(.active) video {
+  display: none;
+}
+
+.carousel-item.active video {
+  display: block;
+}
+
+/* Room Cards */
+.room-card {
+  border: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.room-card .card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.room-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.room-card .card-body {
+  padding: 1.5rem;
+}
+
+.room-card .card-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.room-card .list-unstyled li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Restaurant Section */
+#restaurant img {
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+}
+
+#restaurant img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Offer Cards */
+.offer-card {
+  border: none;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  border-left: 4px solid var(--primary-color);
+}
+
+.offer-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Contact Form */
+.contact-form .form-control,
+.contact-form .form-select {
+  border-radius: var(--border-radius);
+  border: 2px solid #e9ecef;
+  padding: 0.75rem 1rem;
+  transition: var(--transition);
+}
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(44, 85, 48, 0.25);
+}
+
+.contact-info .bi {
+  color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* Back to Top Button */
+.btn-floating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.btn-floating:hover {
+  transform: translateY(-3px);
+}
+
+.btn-floating.show {
+  display: flex;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-dark) !important;
+}
+
+.social-links a {
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  color: var(--primary-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Language Switcher */
+.dropdown-menu {
+  border: none;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius);
+}
+
+.dropdown-item {
+  transition: var(--transition);
+}
+
+.dropdown-item:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Gallery Styles */
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1 !important;
+}
+
+.gallery-item {
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  /* Navbar optimizations for tablets and mobile */
+  .navbar-brand img {
+    height: 35px; /* Slightly smaller logo on smaller screens */
+  }
+
+  .navbar-collapse {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  /* Language dropdown mobile optimization */
+  .dropdown-menu {
+    text-align: center;
+    border: none;
+    box-shadow: var(--shadow);
+  }
+}
+
+/* Video Navigation Mobile Optimization */
+@media (max-width: 991px) {
+  #mainNavbar .navbar-collapse {
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  #mainNavbar .navbar-nav .nav-link {
+    text-align: center;
+    margin: 0.25rem 0;
+    border-radius: 10px;
+  }
+
+  #mainNavbar .book-now-btn {
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  #mainNavbar .navbar-brand {
+    font-size: 1.25rem;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 30px;
+  }
+
+  #mainNavbar .navbar-collapse {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #mainNavbar .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 25px;
+  }
+
+  #mainNavbar {
+    padding: 0.5rem 0 2rem 0 !important;
+  }
+}
+
+/* Extra small screens - further logo reduction */
+@media (max-width: 480px) {
+  #mainNavbar .navbar-brand {
+    font-size: 1rem;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 22px;
+  }
+
+  #mainNavbar .navbar-brand span {
+    font-size: 0.9rem;
+  }
+}
+
+/* Very small screens - minimal logo */
+@media (max-width: 360px) {
+  #mainNavbar .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 20px;
+    margin-right: 8px !important;
+  }
+
+  #mainNavbar .navbar-brand span {
+    font-size: 0.85rem;
+  }
+
+  #mainNavbar .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Ultra small screens - logo text hidden if necessary */
+@media (max-width: 320px) {
+  #mainNavbar .navbar-brand {
+    font-size: 0.8rem;
+  }
+
+  #mainNavbar .navbar-brand img {
+    height: 18px;
+    margin-right: 6px !important;
+  }
+
+  #mainNavbar .navbar-brand span {
+    display: none; /* Hide text on ultra-small screens */
+  }
+
+  #mainNavbar .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  #mainNavbar .navbar-toggler {
+    padding: 0.15rem 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Ensure navbar items don't wrap */
+#mainNavbar .navbar-nav {
+  flex-wrap: nowrap;
+}
+
+#mainNavbar .navbar-collapse {
+  flex-grow: 0;
+}
+
+/* Force single line layout */
+@media (max-width: 991.98px) {
+  #mainNavbar .container {
+    flex-wrap: nowrap !important;
+  }
+
+  #mainNavbar .navbar-brand {
+    max-width: calc(100% - 60px); /* Reserve space for toggler */
+  }
+}
+
+/* Section spacing adjustments - no more fixed navbar */
+.hero-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+#rooms, #gallery, #restaurant, #offers, #contact {
+  margin-top: 0;
+  padding-top: 5rem;
+}
+
+/* Dropdown menu styling for video overlay */
+#mainNavbar .dropdown-menu .dropdown-item:hover {
+  background: rgba(255,255,255,0.2) !important;
+  color: white !important;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: rgba(33, 37, 41, 0.95) !important;
+  }
+
+  .navbar-nav .nav-link {
+    color: #f8f9fa !important;
+  }
+
+  .bg-light {
+    background: #343a40 !important;
+    color: #f8f9fa;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .btn-floating,
+  .carousel-indicators,
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none !important;
+  }
+
+  .hero-section {
+    height: auto;
+    page-break-after: always;
+  }
+
+  .carousel-item img {
+    height: 300px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .btn-primary,
+  .btn-outline-primary {
+    border-width: 3px;
+  }
+
+  .navbar-nav .nav-link::after {
+    height: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .carousel {
+    animation: none;
+  }
+}
+
+/* Logo mobile responsiveness */
+#mainNavbar .navbar-brand {
+  top: 15px;
+  left: 15px;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+}
+
+#mainNavbar .navbar-brand img {
+  height: 120px !important; /* Reduced for tablet */
+  margin-right: 10px !important;
+}
+
+/* Advanced video container adjustments for all device types */
+@media (max-width: 1200px) {
+  .video-slide video {
+    object-position: center center;
+  }
+}
+
+/* iPhone and similar small devices */
+@media (max-width: 414px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 65);
+  }
+
+  .video-slide {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-slide video {
+    width: 100vw;
+    height: var(--dynamic-vh);
+    min-height: var(--dynamic-vh);
+    max-height: var(--dynamic-vh);
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+/* Ensure no empty spaces below videos */
+.hero-section,
+.carousel-item,
+.video-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::after,
+.carousel-item::after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 0;
+}
+
+/* Dynamic aspect ratio container */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Prevent layout shifts */
+.carousel-inner {
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: relative;
+  display: flex !important;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Remove any potential gaps */
+.carousel-item,
+.video-slide {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  vertical-align: top;
+  line-height: 0;
+}
+
+/* Force full viewport usage */
+@media (max-height: 500px) {
+  :root {
+    --dynamic-vh: 100vh;
+  }
+}
+
+/* iPad and tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --dynamic-vh: calc(var(--vh, 1vh) * 95);
+  }
+}
+
+/* Ultra-wide screen adjustments */
+@media (min-aspect-ratio: 21/9) {
+  .video-slide video {
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+/* Handle notched devices (iPhone X and newer) */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .hero-section {
+      padding-top: env(safe-area-inset-top, 0);
+      min-height: calc(var(--dynamic-vh) - env(safe-area-inset-top, 0));
+    }
+  }
+}
+
+/* Hardware acceleration for smoother video transitions */
+.hero-video-container,
+.hero-video-container .video-slide,
+.hero-video-container video {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Smooth performance optimizations */
+.hero-video-container .video-slide {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-container .video-slide {
+    transition-duration: 0.3s;
+  }
+
+  .hero-overlay,
+  .hero-overlay h1,
+  .hero-overlay h2,
+  .hero-overlay p,
+  .hero-overlay .btn {
+    transition-duration: 0.2s;
+    transition-delay: 0s;
+  }
+}
+
+/* Optimize for different frame rates */
+@media (min-resolution: 120dpi) {
+  .hero-video-container .video-slide {
+    transition-duration: 1.2s;
+  }
+}
+
+/* Enhanced loading states */
+.video-slide video[data-loading="true"] {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.video-slide video[data-loaded="true"] {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smoother hover effects */
+.carousel-control-prev,
+.carousel-control-next {
+  transform: translateZ(0);
+}
+
+.carousel-indicators [data-bs-target] {
+  transform: translateZ(0);
+}
+
+/* ========================================
+   MOBILE OPTIMIZATIONS
+   ======================================== */
+
+/* Core Mobile Responsive Design */
+@media (max-width: 767.98px) {
+  /* Navigation optimizations */
+  .navbar {
+    padding: calc(var(--safe-area-inset-top) + 0.5rem) var(--mobile-padding) 0.5rem;
+  }
+
+  .navbar-brand img {
+    max-height: 35px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+  }
+
+  /* Hero section mobile optimization */
+  .hero-section {
+    min-height: calc(100vh - var(--safe-area-inset-top));
+  }
+
+  .hero-overlay {
+    padding: var(--mobile-padding);
+    padding-top: calc(var(--safe-area-inset-top) + 4rem);
+  }
+
+  .hero-overlay h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Touch-optimized buttons */
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    min-height: 48px;
+    padding: 1rem 2rem;
+  }
+
+  /* Container optimizations */
+  .container {
+    padding-left: var(--mobile-padding);
+    padding-right: var(--mobile-padding);
+  }
+
+  /* Section spacing */
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Card optimizations */
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  /* Form optimizations */
+  .form-control, .form-select {
+    min-height: 44px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+}
+
+/* Small phones optimization */
+@media (max-width: 375px) {
+  .hero-overlay h1 {
+    font-size: 1.75rem;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .hero-section {
+    height: 100vh;
+  }
+
+  .hero-overlay {
+    padding: 1rem var(--mobile-padding);
+  }
+
+  .hero-overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-overlay p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link, .btn, .dropdown-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Remove hover effects for touch devices */
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 767.98px) {
+  /* Optimize fonts for mobile */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Optimize text rendering */
+  .hero-overlay h1,
+  .hero-overlay p {
+    text-rendering: optimizeSpeed;
+  }
+
+  /* Optimize animations for low-end devices */
+  .mobile-device.reduce-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   RESTAURANT PAGE MOBILE OPTIMIZATIONS
+   ======================================== */
+
+/* Restaurant-specific mobile optimizations */
+@media (max-width: 767.98px) {
+  /* Page header optimization */
+  .page-header {
+    padding: calc(var(--safe-area-inset-top) + 4rem) 0 2rem;
+  }
+
+  .page-header .display-4 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .page-header .lead {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Restaurant carousel mobile optimization */
+  #restaurantCarousel,
+  #restaurantInteriorCarousel {
+    margin-top: 1.5rem;
+  }
+
+  #restaurantCarousel .carousel-inner,
+  #restaurantInteriorCarousel .carousel-inner {
+    border-radius: 12px;
+  }
+
+  #restaurantCarousel img,
+  #restaurantInteriorCarousel img {
+    max-height: 250px !important;
+    object-fit: cover;
+  }
+
+  /* Restaurant info cards */
+  .restaurant-info .col-sm-6 {
+    margin-bottom: 1rem;
+  }
+
+  .restaurant-info .d-flex {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Menu section mobile optimization */
+  #menuTabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #menuTabs .nav-link {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Menu items mobile layout */
+  .menu-item {
+    flex-direction: column;
+    text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+  }
+
+  .menu-item-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 0 1rem 0 !important;
+    border-radius: 8px;
+  }
+
+  .menu-item-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item-price {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .menu-item-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Special offers section */
+  .special-offers .card {
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .special-offers .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+/* Small phones - restaurant specific */
+@media (max-width: 375px) {
+  .page-header .display-4 {
+    font-size: 1.75rem;
+  }
+
+  #menuTabs .nav-link {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .menu-item {
+    padding: 0.75rem;
+  }
+
+  .menu-item-image {
+    height: 120px;
+  }
+}
+
+/* Landscape mobile - restaurant specific */
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .page-header {
+    padding: calc(var(--safe-area-inset-top) + 3rem) 0 1.5rem;
+  }
+
+  #restaurantCarousel img,
+  #restaurantInteriorCarousel img {
+    max-height: 200px !important;
+  }
+
+  .menu-item-image {
+    height: 120px;
+  }
+}
+
+/* Hero overlay text - change to black */
+.hero-overlay h1,
+.hero-overlay p,
+.hero-overlay .display-3 {
+  color: #000000 !important;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+/* Ensure buttons maintain good contrast */
+.hero-overlay .btn-outline-light {
+  border-color: #000000;
+  color: #000000;
+}
+
+.hero-overlay .btn-outline-light:hover {
+  background-color: #000000;
+  color: #ffffff;
+}

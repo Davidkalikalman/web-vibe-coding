@@ -1,0 +1,46 @@
+#!/usr/bin/expect -f
+
+# Expect script to upload manifest.json with password authentication
+
+set timeout 30
+set host "vilamlynica.sk"
+set username "webftp.vilamlynica.sk"
+set password "Le4q?s7~Zj"
+set port "22"
+
+# Upload manifest.json
+spawn scp -P $port manifest.json $username@$host:/web/
+
+expect {
+    "Are you sure you want to continue connecting" {
+        send "yes\r"
+        exp_continue
+    }
+    "password:" {
+        send "$password\r"
+    }
+    "Permission denied" {
+        puts "❌ Authentication failed"
+        exit 1
+    }
+    timeout {
+        puts "❌ Connection timeout"
+        exit 1
+    }
+}
+
+expect {
+    "100%" {
+        puts "✅ manifest.json uploaded successfully"
+    }
+    "Permission denied" {
+        puts "❌ Upload failed - permission denied"
+        exit 1
+    }
+    timeout {
+        puts "❌ Upload timeout"
+        exit 1
+    }
+}
+
+expect eof
