@@ -1,0 +1,12 @@
+{
+    "name": "your-ftp-server.com",
+    "host": "your-domain.com",
+    "protocol": "sftp",
+    "port": 22,
+    "secure": true,
+    "username": "your-username",
+    "remotePath": "/web",
+    "localPath": "/path/to/your/local/web",
+    "password": "YOUR_SECURE_PASSWORD_HERE",
+    "uploadOnSave": true
+}

@@ -69,6 +69,14 @@ UPLOAD
 SFTP
 upload-*.sh
 batch-upload.sh
+update-*.sh
+upload-manifest.expect
+
+# Security sensitive files
+MANUAL-UPLOAD-GUIDE.md
+*credentials*
+*password*
+*secret*
 
 # Test reports
 reports/
