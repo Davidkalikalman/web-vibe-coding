@@ -1,7 +1,7 @@
 # Core dependencies
 deep-translator==1.11.4
 python-dotenv==1.0.0
-paramiko==3.3.1
+paramiko>=3.4.0
 
 # File processing
 chardet>=3.0.4
@@ -17,12 +17,12 @@ pytest-cov==4.1.0
 pytest-asyncio==0.21.1
 
 # Development tools
-black==23.9.1
+black>=24.0.0
 flake8==6.1.0
 mypy==1.6.1
 
 # Security
-cryptography==41.0.7
+cryptography>=45.0.0
 
 # Optional: Advanced translation services
 openai==0.28.1
